@@ -14,7 +14,7 @@
 }
 
 .App-header {
-  background-color: #282c34;
+  background-color: #eff1f5;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -120,7 +120,7 @@ th {
 
 .orange-button {
   background-color: orange;
-  color: black;
+  color: whitesmoke;
 }
 
 .button-space {
@@ -133,7 +133,7 @@ th {
 }
 
 body {
-  background-color: black;
+  background-color: whitesmoke;
 }
 .errorRedBorder{
   border-color: red;

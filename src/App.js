@@ -8,11 +8,12 @@ import { BrowserRouter } from 'react-router-dom';
 import React from 'react';
 import { Navigation } from './Component/Navigation/Navigation';
 import Home from './Component/Home';
+import SideBar from './Component/SideBar';
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path='/' element={<Home />}></Route>
+        <Route path='/' element={<SideBar />}></Route>
         <Route path='AddScenario' element={<AddScenario />}></Route>
         <Route path='AllScenario' element={<AllScenario />}></Route>
         <Route path='AddVehicles' element={<AddVehicles />}></Route>
