@@ -32,7 +32,109 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
+}
+
+.container {
+  display: flex;
+}
+
+.textbox {
+  margin-right: 10px;
+}
+
+/* body{
+  background-color: #282c34;
+  margin: 0;
+  padding: 0;
+} */
+
+.sidebar {
+  background-color: #f1f1f1;
+  width: 200px;
+  height: 100vh;
+  padding: 20px;
+  box-sizing: border-box;
+  float: left;
+}
+
+/* Table styles */
+.table-container {
+  margin-left: 220px;
+  /* To create space for the sidebar */
+  padding: 20px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: rgb(218, 214, 214);
+}
+
+td,
+th {
+  padding: 8px;
+  border-bottom: 1px solid #ddd;
+}
+
+/* Button styles */
+.button-container {
+  margin-left: 20px;
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.button-container .sidebar-label {
+  margin-right: 10px;
+  color: whitesmoke;
+}
+
+.button-container .buttons-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.buttons-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  margin-top: 20px;
+}
+
+.buttons-wrapper button {
+  margin-top: 10px;
+}
+.green-button {
+  background-color: green;
+  color: white;
+}
+
+.blue-button {
+  background-color: skyblue;
+  color: white;
+}
+
+.orange-button {
+  background-color: orange;
+  color: black;
+}
+
+.button-space {
+  width: 120px;
+  /* Adjust the space width as needed */
+}
+.delete-icon {
+  cursor: pointer;
+  color: red;
+}
+
+body {
+  background-color: black;
+}
+.errorRedBorder{
+  border-color: red;
 }
