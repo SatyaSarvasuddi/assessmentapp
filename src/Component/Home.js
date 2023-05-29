@@ -10,6 +10,7 @@ import "react-bootstrap-table/dist/react-bootstrap-table-all.min.css";
 import * as $ from "jquery";
 import { Constants } from './Constants';
 import Swal from "sweetalert2";
+import SideBar from './SideBar';
 
 const obj = new Constants();
 export default function Home() {
@@ -76,22 +77,7 @@ export default function Home() {
     }
     return (
         <div>
-            <div className="sidebar">
-                <ul>
-                    <li>
-                        <Link to='/'>Home</Link>
-                    </li>
-                    <li>
-                        <Link to='/AddScenario'>Add Scenario</Link>
-                    </li>
-                    <li>
-                        <Link to='/AllScenario'>All Scenario</Link>
-                    </li>
-                    <li>
-                        <Link to='/AddVehicles'>Add Vehicles</Link>
-                    </li>
-                </ul>
-            </div>
+            <SideBar />
             <Select>
 
             </Select>

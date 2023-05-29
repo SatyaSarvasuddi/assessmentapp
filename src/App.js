@@ -13,7 +13,7 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path='/' element={<SideBar />}></Route>
+        <Route path='/' element={<Home />}></Route>
         <Route path='AddScenario' element={<AddScenario />}></Route>
         <Route path='AllScenario' element={<AllScenario />}></Route>
         <Route path='AddVehicles' element={<AddVehicles />}></Route>

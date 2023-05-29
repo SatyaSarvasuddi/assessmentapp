@@ -82,7 +82,7 @@ th {
 
 /* Button styles */
 .button-container {
-  margin-left: 20px;
+  margin-left: 20vw;
   margin-top: 20px;
   display: flex;
   align-items: center;
@@ -133,8 +133,47 @@ th {
 }
 
 body {
-  background-color: whitesmoke;
+  background-color: rgb(6, 6, 6);
 }
 .errorRedBorder{
   border-color: red;
 }
+
+.link {
+  text-decoration: none;
+  color: black;
+  font-weight: 600;
+  font-size: 18px;
+}
+
+.link:hover {
+  color: blue;
+}
+
+.sidebar-li {
+  padding: 0.5rem 1rem;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+}
+.sidebar-li-active {
+  padding: 0.5rem 1rem;
+  background-color: whitesmoke;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+}
+.link-active {
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 18px;
+  color: blue;
+}
+
+.sidebar-li:hover {
+  background-color: whitesmoke;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 25% 1fr; /* Two columns with equal width */
+}
+
