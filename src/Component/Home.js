@@ -34,7 +34,7 @@ export default function Home() {
         } catch (error) {
             console.error(error);
         }
-    });
+    }, []);
     const deletescenario = async (cell, row) => {
         try {
             return (

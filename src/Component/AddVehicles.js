@@ -41,7 +41,7 @@ export function AddVehicles() {
             console.error(error);
         }
 
-    });
+    }, []);
     const HandleChange = selectedOption => {
         try {
             setselectedScenarioOption(selectedOption);
