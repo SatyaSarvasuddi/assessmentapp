@@ -2,7 +2,6 @@ import { Link } from 'react-router-dom';
 
 
 const SideBar = ({ active }) => {
-    active = 'Home';
     return (
         <>
             <div style={{ width: "20vw", height: "100vh", background: "#82cbd3", marginTop: "-1rem" }}>

@@ -13,7 +13,7 @@ import { Button, Stack } from "@mui/material"
 const obj = new Constants();
 export default function AddScenario() {
     const [scenarioName, setScenarioName] = useState('');
-    const [scenarioTime, setScenarioTime] = useState(0);
+    const [scenarioTime, setScenarioTime] = useState('');
     const [RenderHome, SetRenderHome] = useState(false);
     const [inputError, setInputError] = useState(false);
     const inputStyles = {
@@ -50,7 +50,7 @@ export default function AddScenario() {
     const ResetData = () => {
         try {
             setScenarioName('');
-            setScenarioTime(0);
+            setScenarioTime('');
         } catch (error) {
             console.log(error);
         }
@@ -113,7 +113,7 @@ export default function AddScenario() {
                                     size="small" placeholder='Test Scenario'
                                     name="scenarioName"
                                     value={scenarioName}
-
+                                    onChange={(e) => setScenarioName(e.target.value)}
                                 />
                             </div>
                             <div style={{ display: "flex", flexDirection: "column" }}>
@@ -151,18 +151,21 @@ export default function AddScenario() {
                                             },
                                         }
                                     }
-                                    size="small" placeholder=' 10'
+                                    size="small" placeholder='10'
                                     name='scenarioTime'
                                     value={scenarioTime}
+                                    onChange={(e) => setScenarioTime(e.target.value)}
                                 />
                             </div>
                         </div>
 
                         <div style={{ marginTop: "2rem" }}>
                             <Stack spacing={2} direction="row">
-                                <Button variant="contained" style={{ background: "#278c31" }}>Add</Button>
-                                <Button variant="contained" style={{ background: "#d56b31" }}>Reset</Button>
-                                <Button variant="contained" >Go Back</Button>
+                                <Button variant="contained" onClick={postData} style={{ background: "#278c31" }}>Add</Button>
+                                <Button variant="contained" onClick={ResetData} style={{ background: "#d56b31" }}>Reset</Button>
+                                <Button variant="contained" onClick={() => {
+                                    return (<Link className='link-active' to='/'>Home</Link>);
+                                }}>Go Back</Button>
                             </Stack>
                         </div>
                     </div>
