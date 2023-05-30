@@ -10,7 +10,6 @@ import { Navigation } from './Component/Navigation/Navigation';
 import Home from './Component/Home';
 import SideBar from './Component/SideBar';
 function App() {
-  // "deded"
   return (
     <BrowserRouter>
       <Routes>
