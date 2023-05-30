@@ -3,6 +3,7 @@ import { Navigation } from './Navigation/Navigation';
 import { Link } from 'react-router-dom';
 import { Label } from 'semantic-ui-react';
 import { Constants } from './Constants';
+import { useNavigate } from 'react-router-dom';
 import { data } from 'jquery';
 import axios from 'axios';
 import SideBar from './SideBar';
@@ -15,6 +16,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import { MdDelete, MdEdit, MdAddCircle } from 'react-icons/md';
 
 const obj = new Constants();
 
@@ -50,15 +52,30 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 export function AllScenario() {
     const [scenarioData, setscenariodata] = useState([]);
     const [vehicledata, setvehicledata] = useState([]);
+    const [tabledata, settabledata] = useState([]);
+    const nav = useNavigate();
     useEffect(() => {
         try {
+            let tabledat = [];
+            let count = 0;
             axios.get(obj.APIurl).then((response) => {
                 setscenariodata(response.data);
-            }).then(() => {
-                axios.get(obj.vehicleAPIurl).then((val) => {
+            }).then(async () => {
+                await axios.get(obj.vehicleAPIurl).then((val) => {
                     setvehicledata(val.data);
                 }).catch((ex) => {
                     console.log(ex);
+                }).then(async () => {
+                    await scenarioData.map((dat) => {
+                        vehicledata.map((val) => {
+                            if (dat.scenarioName === val.selectedScenarioOption.label) {
+                                count += 1;
+                            }
+                            tabledat.push({ ScenarioID: dat.id, scenarioName: dat.scenarioName, scenarioTime: dat.scenarioTime, Nov: count })
+                        });
+                    });
+                    settabledata(tabledat);
+                    console.log(tabledata);
                 })
             }).catch((ex) => {
                 console.log(ex);
@@ -66,7 +83,14 @@ export function AllScenario() {
         } catch (error) {
             console.error(error);
         }
-    }, []);
+    });
+    const handleAddVehicleClick = (dat) => {
+        try {
+            nav("/AddVehicles", { state: dat });
+        } catch (error) {
+            console.error(error);
+        }
+    }
     const DeleteAll = () => {
         try {
 
@@ -78,16 +102,16 @@ export function AllScenario() {
 
     return (
         <div className='grid-container'>
-            <div><SideBar /></div>
+            <div><SideBar active={"AllScenario"} /></div>
             <div>
                 <div>
                     <h4 style={{ color: 'white' }}>Scenario / all</h4>
                     <h2 style={{ color: 'white' }}>All Scenario</h2>
                     <div style={{ marginTop: "-3rem", marginLeft: "35rem" }}>
                         <Stack spacing={2} direction='row'>
-                            <Button variant="contained" style={{ background: "#d56b31" }} >New Scenario</Button>
-                            <Button variant="contained" style={{ background: "#278c31" }}>Reset</Button>
-                            <Button variant="contained" style={{ background: "#d56b31" }} onClick={DeleteAll}>Go Back</Button>
+                            <Button variant="contained" style={{ background: "#d56b31" }} onClick={() => nav("/AddScenario")} >New Scenario</Button>
+                            <Button variant="contained" style={{ background: "#278c31" }} onClick={() => nav("/AddVehicles")}>Add Vehicle</Button>
+                            <Button variant="contained" style={{ background: "#d56b31" }} >Delete All</Button>
                         </Stack>
                     </div>
                     <div style={{ marginTop: "2rem", marginRight: "4rem" }}>
@@ -105,19 +129,19 @@ export function AllScenario() {
                                     </TableRow>
                                 </TableHead>
                                 <TableBody>
-                                    {scenarioData.map((row) => (
+                                    {tabledata.map((row) => (
                                         <StyledTableRow key={row.id}>
                                             <StyledTableCell align='center' component="th" scope="row">
-                                                {row.id}
+                                                {row.ScenarioID}
                                             </StyledTableCell>
                                             <StyledTableCell align='center' component="th" scope="row">
                                                 {row.scenarioName}
                                             </StyledTableCell>
                                             <StyledTableCell align="center">{row.scenarioTime}</StyledTableCell>
-                                            <StyledTableCell align="center">3</StyledTableCell>
-                                            <StyledTableCell align="center">+</StyledTableCell>
-                                            <StyledTableCell align="center">update</StyledTableCell>
-                                            <StyledTableCell align="center">delete</StyledTableCell>
+                                            <StyledTableCell align="center">{row.Nov}</StyledTableCell>
+                                            <StyledTableCell align="center"><MdAddCircle onClick={() => handleAddVehicleClick(row)} /></StyledTableCell>
+                                            <StyledTableCell align="center"><MdEdit /></StyledTableCell>
+                                            <StyledTableCell align="center"><MdDelete /></StyledTableCell>
                                         </StyledTableRow>
                                     ))}
                                 </TableBody>

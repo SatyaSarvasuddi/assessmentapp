@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { Constants } from './Constants';
 import Select from "react-select";
 import axios from 'axios';
@@ -7,11 +7,14 @@ import { Label, Input, TextArea, Button } from 'semantic-ui-react';
 import { error } from 'jquery';
 import Swal from "sweetalert2";
 import Home from './Home';
+import SideBar from './SideBar';
 
 
 const obj = new Constants();
 
 export function AddVehicles() {
+    const location = useLocation();
+    const rowData = location.state;
     const [scenariodata, setscenariodata] = useState([]);
     const [selectedScenarioOption, setselectedScenarioOption] = useState([]);
     const [vehicleName, setVehicleName] = useState('');
@@ -26,17 +29,23 @@ export function AddVehicles() {
         { label: "Upwards", value: "Upwards" },
         { label: "Downwards", value: "Downwards" }
     ];
+
     useEffect(() => {
         try {
-            let APIdata = [];
-            axios.get(obj.APIurl).then((Response) => {
-                Response.data.map((dat, val) => {
-                    APIdata.push({ label: dat.scenarioName, value: dat.scenarioName });
+            if (rowData.scenarioName === undefined) {
+                let APIdata = [];
+                axios.get(obj.APIurl).then((Response) => {
+                    Response.data.map((dat, val) => {
+                        APIdata.push({ label: dat.scenarioName, value: dat.scenarioName });
+                    });
+                    setscenariodata(APIdata);
+                }).catch((ex) => {
+                    console.error(ex);
                 });
-                setscenariodata(APIdata);
-            }).catch((ex) => {
-                console.error(ex);
-            });
+            }
+            else {
+                setselectedScenarioOption({ label: rowData.scenarioName, value: rowData.scenarioName });
+            }
         } catch (error) {
             console.error(error);
         }
@@ -118,22 +127,7 @@ export function AddVehicles() {
     }
     return (
         <React.Fragment>
-            <div className="sidebar">
-                <ul>
-                    <li>
-                        <Link to='/'>Home</Link>
-                    </li>
-                    <li>
-                        <Link to='/AddScenario'>Add Scenario</Link>
-                    </li>
-                    <li>
-                        <Link to='/AllScenario'>All Scenario</Link>
-                    </li>
-                    <li>
-                        <Link to='/AddVehicles'>Add Vehicles</Link>
-                    </li>
-                </ul>
-            </div>
+            <SideBar active={"AddVehicles"} />
             <div className='content'>
                 <Label>Vehicle/add</Label>
                 <Label>Scenario List</Label>

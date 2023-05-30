@@ -66,7 +66,7 @@ export default function AddScenario() {
     return (
         <React.Fragment>
             <div className="grid-container">
-                <div> <SideBar /></div>
+                <div> <SideBar active={"AddScenario"} /></div>
                 <div>
                     <div >
                         <h4 style={{ color: 'white' }}>Scenario / add</h4>

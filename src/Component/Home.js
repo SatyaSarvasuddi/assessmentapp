@@ -77,7 +77,7 @@ export default function Home() {
     }
     return (
         <div>
-            <SideBar />
+            <SideBar active={"Home"} />
             <Select>
 
             </Select>
