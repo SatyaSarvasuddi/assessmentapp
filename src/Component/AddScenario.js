@@ -7,8 +7,7 @@ import { Link } from 'react-router-dom';
 import { Constants } from './Constants';
 import Swal from "sweetalert2";
 import SideBar from './SideBar';
-import TextField from '@mui/material/TextField';
-import { Button, Stack } from "@mui/material"
+import { Button, Stack, TextField } from "@mui/material"
 
 const obj = new Constants();
 export default function AddScenario() {
@@ -73,7 +72,7 @@ export default function AddScenario() {
                         <h4 style={{ color: 'white' }}>Scenario / add</h4>
                         <h2 style={{ color: 'white' }}>Add Scenario</h2>
 
-                        <div style={{ display: "flex", justifyContent: "space-between", background: "#232222", padding: "2rem 3rem" }}>
+                        <div style={{ display: "flex", justifyContent: "space-between", background: "#232222", padding: "2rem 3rem", marginRight: "4rem" }}>
                             <div style={{ display: "flex", flexDirection: "column" }}>
                                 <label style={{ color: 'white', marginLeft: "5px" }}>Scenario Name</label>
                                 <TextField
